@@ -5,6 +5,7 @@ import GoogleMapsAPI from 'googlemaps';
 
 /* codes from starter package provided by Professor Tregubov*/
 console.log('starting bot');
+console.log(process.env.SLACK_BOT_TOKEN);
 
 // setting up yelp
 const yelp = new Yelp({
@@ -56,6 +57,7 @@ const controller = botkit.slackbot({
 
 // initialize slackbot
 const slackbot = controller.spawn({
+
   token: process.env.SLACK_BOT_TOKEN,
   // this grabs the slack token we exported earlier
 }).startRTM(err => {
@@ -165,7 +167,7 @@ const askLocation = function (type, convo) {
 controller.hears(['lost', 'map', 'direction', 'how to get there'], ['direct_mention', 'mention', 'direct_message'], (bot, message) => {
   bot.reply(message, 'Seems like you\'re lost. I will pull up the map for you in one second.');
   const params = {
-    center: '444 W Main St Lock Haven PA',
+    center: 'Dartmouth College, Hanover, NH',
     zoom: 15,
     size: '500x400',
     maptype: 'roadmap',
