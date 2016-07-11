@@ -1,5 +1,6 @@
 import botkit from 'botkit';
 import Yelp from 'yelp';
+import GoogleMapsAPI from 'googlemaps';
 // this is es6 syntax for importing libraries
 
 /* codes from starter package provided by Professor Tregubov*/
@@ -170,13 +171,13 @@ controller.hears(['lost', 'map', 'direction', 'how to get there'], ['direct_ment
     maptype: 'roadmap',
     markers: [
       {
-        location: '300 W Main St Lock Haven, PA',
+        location: 'Dartmouth College, Hanover, NH',
         label: 'A',
         color: 'green',
         shadow: true,
       },
       {
-        location: '444 W Main St Lock Haven, PA',
+        location: 'Dirt Cowboy Cafe, Hanover, NH',
         icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe%7C996600',
       },
     ],
@@ -194,13 +195,24 @@ controller.hears(['lost', 'map', 'direction', 'how to get there'], ['direct_ment
         color: '0x0000ff',
         weight: '5',
         points: [
-          '41.139817,-77.454439',
-          '41.138621,-77.451596',
+          '43.7044, 72.2887',
+          '44, 73',
         ],
       },
     ],
   };
-  gmAPI.staticMap(params);
+  // bot.respond ( with url from gmAPI.)
+  const attachments = {
+    attachments: [
+      {
+        text: 'This is the map!',
+        color: '#7CD197',
+        image_url: `${gmAPI.staticMap(params)}`,
+      },
+    ],
+  };
+  // return result to user
+  bot.reply(message, attachments);
 });
 
 // outgoing webhook
