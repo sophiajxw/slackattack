@@ -224,7 +224,7 @@ controller.on('outgoing_webhook', (bot, message) => {
 
 // default reply for what bot can do
 controller.hears(['help', 'what can you do'], ['direct_mention', 'mention', 'direct_message'], (bot, message) => {
-  bot.reply(message, 'Here is what I can do: I can chat with you; send you nearby restaurant info :)');
+  bot.reply(message, 'Here is what I can do: I can chat with you; send you nearby restaurant info; send you a google map, and a route to a nearby cafe.');
 });
 
 // default reply
