@@ -87,7 +87,6 @@ controller.hears(['hello', 'hi', 'howdy'], ['direct_message', 'direct_mention', 
 });
 
 /* Adapted from https://github.com/howdyai/botkit/blob/master/examples/convo_bot.js */
-
 // messages for yelp
 controller.hears(['hungry', 'restaurant', 'food'], ['direct_message', 'direct_mention', 'mention'], (bot, message) => {
   function askFlavor(response, convo) {
@@ -167,13 +166,13 @@ const askLocation = function (type, convo) {
 controller.hears(['lost', 'map', 'direction', 'how to get there'], ['direct_mention', 'mention', 'direct_message'], (bot, message) => {
   bot.reply(message, 'Seems like you\'re lost. I will pull up the map for you in one second.');
   const params = {
-    center: 'Dartmouth College, Hanover, NH',
+    center: '9 Maynard St, Hanover, NH',
     zoom: 15,
-    size: '500x400',
+    size: '600x500',
     maptype: 'roadmap',
     markers: [
       {
-        location: 'Dartmouth College, Hanover, NH',
+        location: '9 Maynard St, Hanover, NH',
         label: 'A',
         color: 'green',
         shadow: true,
@@ -197,8 +196,8 @@ controller.hears(['lost', 'map', 'direction', 'how to get there'], ['direct_ment
         color: '0x0000ff',
         weight: '5',
         points: [
-          '43.7044, 72.2887',
-          '44, 73',
+          '43.707079, -72.287075',
+          '43.702322, -72.289557',
         ],
       },
     ],
@@ -207,13 +206,14 @@ controller.hears(['lost', 'map', 'direction', 'how to get there'], ['direct_ment
   const attachments = {
     attachments: [
       {
-        text: 'This is the map!',
+        text: 'There\'s also a cafe around you. Go get a coffee! I\'ve pointed out the road for you.',
         color: '#7CD197',
-        image_url: `${gmAPI.staticMap(params)}`,
+        image_url: gmAPI.staticMap(params),
       },
     ],
   };
   // return result to user
+  console.log(gmAPI.staticMap(params));
   bot.reply(message, attachments);
 });
 
