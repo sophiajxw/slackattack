@@ -160,6 +160,7 @@ const askLocation = function (type, convo) {
 };
 
 // message for maps
+/* code adapted from https://www.npmjs.com/package/googlemaps */
 controller.hears(['lost', 'map', 'direction', 'how to get there'], ['direct_mention', 'mention', 'direct_message'], (bot, message) => {
   bot.reply(message, 'Seems like you\'re lost. I will pull up the map for you in one second.');
   const params = {
@@ -204,7 +205,7 @@ controller.hears(['lost', 'map', 'direction', 'how to get there'], ['direct_ment
 
 // outgoing webhook
 controller.on('outgoing_webhook', (bot, message) => {
-  bot.replyPublic(message, 'Aloha I\'m Sophia\'s bot. Nice to meet you!');
+  bot.replyPublic(message, 'What\'s up?');
 });
 
 // default reply for what bot can do
