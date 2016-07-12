@@ -194,7 +194,7 @@ controller.hears(['lost', 'map', 'direction', 'how to get there'], ['direct_ment
 
 // outgoing webhook
 controller.on('outgoing_webhook', (bot, message) => {
-  bot.replyPublic(message, 'Here I am! What\'s up?');
+  bot.replyPublic(message, 'Here I am! What\'s up? http://giphy.com/gifs/friends-rachel-green-tv-VZXuygf0oUb5u');
 });
 
 // default reply for what bot can do
