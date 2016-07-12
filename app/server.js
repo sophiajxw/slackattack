@@ -5,7 +5,6 @@ import GoogleMapsAPI from 'googlemaps';
 
 /* codes from starter package provided by Professor Tregubov*/
 console.log('starting bot');
-console.log(process.env.SLACK_BOT_TOKEN);
 
 // setting up yelp
 const yelp = new Yelp({
@@ -25,30 +24,6 @@ const publicConfig = {
   proxy: 'http://127.0.0.1:9999', // optional, set a proxy for HTTP requests
 };
 const gmAPI = new GoogleMapsAPI(publicConfig);
-
-const geocodeParams = {
-  'address': '121, Curtain Road, EC2A 3AD, London UK',
-  'components': 'components=country:GB',
-  'bounds': '55,-1|54,1',
-  'language': 'en',
-  'region': 'uk',
-};
-
-gmAPI.geocode(geocodeParams, function (err, result) {
-  console.log(result);
-});
-
-// reverse geocode API
-const reverseGeocodeParams = {
-  'latlng': '51.1245,-0.0523',
-  'result_type': 'postal_code',
-  'language': 'en',
-  'location_type': 'APPROXIMATE',
-};
-
-gmAPI.reverseGeocode(reverseGeocodeParams, function (err, result) {
-  console.log(result);
-});
 
 // botkit controller
 const controller = botkit.slackbot({
@@ -219,7 +194,7 @@ controller.hears(['lost', 'map', 'direction', 'how to get there'], ['direct_ment
 
 // outgoing webhook
 controller.on('outgoing_webhook', (bot, message) => {
-  bot.replyPublic(message, 'What\'s up?');
+  bot.replyPublic(message, 'Here I am! What\'s up?');
 });
 
 // default reply for what bot can do
